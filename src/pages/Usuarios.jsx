@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 import TableUsuarios from "../components/TableUsuarios";
 const Usuarios = () => {
     return (
-        <div className="container">
+        <ReactBootStrap.Container>
             <NavBar/>
             <ReactBootStrap.Form>
                 <ReactBootStrap.Row>
@@ -34,8 +34,9 @@ const Usuarios = () => {
 
                 </ReactBootStrap.Row>
             </ReactBootStrap.Form>
+            
             <TableUsuarios/>
-        </div>   
+        </ReactBootStrap.Container> 
     )
 }
 export default Usuarios

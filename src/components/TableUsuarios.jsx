@@ -26,7 +26,7 @@ const TableUsuarios = () => {
               <th scope="col">Id</th>
               <th scope="col">Name</th>
               <th scope="col">Email</th>
-              <th scope="col">Ciudad</th>
+              
               <th scope="col">Acciones</th>
               
 
@@ -39,7 +39,7 @@ const TableUsuarios = () => {
                   <td>{item.id}</td>
                   <td>{item.nombre}</td>
                   <td>{item.apellido}</td>
-                  <td>{item.address.ciudad}</td>
+                  
                   <td><button className="btn btn-primary">Editar</button>{"  "}<button className="btn btn-danger">Eliminar</button></td>
                   
                 </tr>
