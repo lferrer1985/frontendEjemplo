@@ -9,7 +9,7 @@ const NewCliente = () => {
     
     const history = useHistory();
     
-    const [data , setData] = useState({nombre:"",apellido:"",telefono:"",puntos:""})
+    const [data , setData] = useState({numerodocumento:"",nombre:"",apellido:"",email:"",celular:""})
 
     
 
@@ -20,7 +20,7 @@ const NewCliente = () => {
         })
     }
 
-    const URL="http://localhost:8080/api/cliente";
+    const URL="http://localhost:8080/api/usuario";
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,7 +34,7 @@ const NewCliente = () => {
                 `El Registro ${response.data.id} ha sido guardado con exito!`,
                 "success"
             )
-            history.push("\cliente")
+            history.push("cliente")
         }else{
             console.log(response.status,response)
             Swal.fire(
@@ -48,9 +48,20 @@ const NewCliente = () => {
     return (
         <Container>
             <NavBar/>
-            <h1 className="text-center">Nuevo Cliente</h1>
+            <h1 className="text-center">Nuevo Usuario</h1>
             <Container className="col-md-5 mx-auto">
             <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3">
+                    <Form.Control
+                    type="text"
+                    name="numerodocumento"
+                    placeholder="Numero de documento"
+                    required
+                    value={data.numerodocumento}
+                    onChange={handleChange}
+                    >
+                    </Form.Control >
+                </Form.Group >
                 <Form.Group className="mb-3">
                     <Form.Control
                     type="text"
@@ -75,11 +86,11 @@ const NewCliente = () => {
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Control
-                    type="text"
-                    name="telefono"
-                    placeholder="Telefono"
+                    type="email"
+                    name="email"
+                    placeholder="E-mail"
                     required
-                    value={data.telefono}
+                    value={data.email}
                     onChange={handleChange}
                     >
                     </Form.Control>
@@ -87,10 +98,10 @@ const NewCliente = () => {
                 <Form.Group className="mb-3">
                     <Form.Control
                     type="number"
-                    name="puntos"
-                    placeholder="Puntos"
+                    name="celular"
+                    placeholder="Celular"
                     required
-                    value={data.puntos}
+                    value={data.celular}
                     onChange={handleChange}
                     >
                     </Form.Control>

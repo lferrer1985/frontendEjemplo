@@ -9,7 +9,7 @@ const TableUsuarios = () => {
         const fecthUsersList = async () => {
             const {data} = await axios(
                 //"https://jsonplaceholder.typicode.com/users"
-                "http://localhost:8080/api/cliente"
+                "http://localhost:8080/api/usuario"
             );
             setUsers({documentos:data});//asignamos los datos al json documentos
             console.log(data);
@@ -23,8 +23,10 @@ const TableUsuarios = () => {
           <thead>
             <tr>
 
-              <th scope="col">Id</th>
-              <th scope="col">Name</th>
+              <th scope="col">Documento</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Celular</th>
               <th scope="col">Email</th>
               
               <th scope="col">Acciones</th>
@@ -36,9 +38,11 @@ const TableUsuarios = () => {
             {users.documentos &&
               users.documentos.map((item) =>
                 <tr key={item.id}>
-                  <td>{item.id}</td>
+                  <td>{item.numerodocumento}</td>
                   <td>{item.nombre}</td>
                   <td>{item.apellido}</td>
+                  <td>{item.celular}</td>
+                  <td>{item.email}</td>
                   
                   <td><button className="btn btn-primary">Editar</button>{"  "}<button className="btn btn-danger">Eliminar</button></td>
                   

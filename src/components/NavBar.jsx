@@ -27,13 +27,14 @@ const NavBar = () => {
                 navbarScroll
             >
                 <Link to = "/" className="nav-link">Inicio</Link>
-                <Link to = "/newcliente" className="nav-link">Cargar datos</Link>
+                <Link to = "/newusuario" className="nav-link">Cargar datos</Link>
                 <Link to = "/users" className="nav-link">Listar datos</Link>
-                <NavDropdown title="Nosotros" id="navbarScrollingDropdown">
+                
+                <NavDropdown title="+ Datos" id="navbarScrollingDropdown">
                 <NavDropdown.Item ><Link to = "/about" className="nav-link">Acerca de Nosotros</Link></NavDropdown.Item>
-                <NavDropdown.Item ><Link to = "/Contacto" className="nav-link">Contacto</Link></NavDropdown.Item>
+                <NavDropdown.Item ><Link to = "/newacademia" className="nav-link">Academia</Link></NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item ><Link to = "/Login" className="nav-link">iniciar Sesion</Link></NavDropdown.Item>
+                <NavDropdown.Item ><Link to = "/Login" className="nav-link">Iniciar Sesion</Link></NavDropdown.Item>
                 </NavDropdown>
             </Nav>
 

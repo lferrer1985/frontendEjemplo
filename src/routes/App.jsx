@@ -12,7 +12,8 @@ import Usuarios from '../pages/Usuarios';
 import Acercade from '../pages/Acercade';
 import Inicio from "../pages/Inicio";
 import NotFound from '../pages/NotFound';
-import NewCliente from "../pages/NewCliente";
+import NewUsuario from "../pages/NewUsuario.jsx";
+import NewAcademia from "../pages/NewAcademia.jsx";
 
 function App() {
   return (   
@@ -21,9 +22,10 @@ function App() {
                       
           <Switch>
             <Route exact path="/about" component={Acercade} />                         
-            <Route exact path="/users" component={Usuarios} />
+            <Route exact path="/users" component={Usuarios} />            
+            <Route exact path="/newusuario" component={NewUsuario} />
+            <Route exact path="/newacademia" component={NewAcademia} />
             <Route exact path="/" component={Inicio} />
-            <Route exact path="/newcliente" component={NewCliente} />
             <Route path="*" component={NotFound} />
           </Switch>
       
