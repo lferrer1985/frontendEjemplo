@@ -6,7 +6,6 @@ const Inicio = () =>{
         <Container>
             <NavBar/>
         </Container>
-        
     )
 }
 export default Inicio
