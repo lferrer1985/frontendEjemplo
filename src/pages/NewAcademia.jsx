@@ -1,16 +1,20 @@
 import axios from "axios";
-import Swal from "sweetalert2";
 import React, {useState} from "react";
-import { useHistory } from 'react-router'
 import {Container,  Form} from "react-bootstrap";
 import NavBar from "../components/NavBar";
+import Swal from 'sweetalert2'
 
 const NewAcademia = () => {
     
-    const history = useHistory();
+    const id = localStorage.getItem('user');
     
-    const [data , setData] = useState({nivel:"",titulo:"",anio:"",estado:""})
-
+    const [data , setData] = useState({
+        id:id,
+        nivel:"",
+        titulo:"",
+        anio:"",
+        estado:""
+    });
     
 
     const handleChange =  ({target}) => {
@@ -18,39 +22,19 @@ const NewAcademia = () => {
             ...data,
             [target.name]:target.value
         })
+        console.log(data);
     }
 
-    const URL="localhost:8080/user/update/academia/{id}/{nivel}/{titulo}/{anio}/{estado}";
+    const baseURL="localhost:8080/api/usuario/login/";
+    console.log(baseURL);
     
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const response = await axios.post(URL, data);
-        
-        console.log(response,response.data);
-
-        if(response.status === 200){
-            Swal.fire(
-                "Guardado!",
-                `El Registro ${response.data.id} ha sido guardado con exito!`,
-                "success"
-            )
-            history.push("usuario")
-        }else{
-            console.log(response.status,response)
-            Swal.fire(
-                "Error",
-                "No se guardó el registro",
-                "error"
-            )
-        }
-    }
 
     return (
         <Container>
             <NavBar/>
-            <h1 className="text-center">Registrar Academia</h1>
+            <h3 className="text-center">Registrar Estudios</h3>
             <Container className="col-md-5 mx-auto">
-            <Form onSubmit={handleSubmit}>
+            <Form>
                 <Form.Group className="mb-3">
                     <Form.Control
                     type="text"
@@ -95,7 +79,7 @@ const NewAcademia = () => {
                     >
                     </Form.Control>
                 </Form.Group>                
-                <button className="btn btn-success">Guardar</button>
+                <button className="btn btn-success" onClick={''}>Guardar</button>
             </Form>
             
         </Container>

@@ -14,6 +14,7 @@ import Inicio from "../pages/Inicio";
 import NotFound from '../pages/NotFound';
 import NewUsuario from "../pages/NewUsuario.jsx";
 import NewAcademia from "../pages/NewAcademia.jsx";
+import Login from "../pages/Login";
 
 function App() {
   return (   
@@ -25,6 +26,7 @@ function App() {
             <Route exact path="/users" component={Usuarios} />            
             <Route exact path="/newusuario" component={NewUsuario} />
             <Route exact path="/newacademia" component={NewAcademia} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/" component={Inicio} />
             <Route path="*" component={NotFound} />
           </Switch>

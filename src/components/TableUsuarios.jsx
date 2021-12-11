@@ -14,9 +14,11 @@ const TableUsuarios = () => {
     
     
         const peticionGet = async () => {
-            await axios.get(baseURL).then(response=>{
-              setData(response.data); //data aquí hace referencia a una funcion de axios
-            }).catch(error=>{
+            await axios.get(baseURL)
+            .then(response=>{
+              setData(response.data); //data aquí es la data que retorna axios
+            })
+            .catch(error=>{
               console.log(error);
             })
             console.log(data);
@@ -36,17 +38,18 @@ const TableUsuarios = () => {
           
         }
 
-        const peticionDelete=async()=>{
+        const peticionDelete = async()=>{
           await axios.delete(baseURL+clienteSeleccionado.id)
-          .then(response =>{
-            setData(data.filter(cliente=>cliente.id!==clienteSeleccionado.id));
+          .then(response => {
+            setData(data.filter( cliente => cliente.id !== clienteSeleccionado.id ));
             abrirCerrarModalEliminar();
             Swal.fire(
               "confirmado",
               response.data,
               "warning"
             )
-          }).catch(error =>{
+          })
+          .catch(error =>{
             console.log(error);
           })
         }
@@ -57,11 +60,16 @@ const TableUsuarios = () => {
         const[clienteSeleccionado, setClienteSeleccionado] = useState({
           nombre:"",
           apellido:"",
+          direccion:{pais:""}          
         });
 
         const seleccionarCliente = (cliente,caso)=>{
+          
           setClienteSeleccionado(cliente);
-          (caso === "Editar")?abrirCerrarModalEditar():abrirCerrarModalEliminar();
+          localStorage.setItem('user',cliente.id);
+          console.log("local Storage "+localStorage.getItem('user'));
+
+          (caso === "Editar") ? abrirCerrarModalEditar():abrirCerrarModalEliminar();
         }
 
         const abrirCerrarModalEditar=()=>{
@@ -72,9 +80,9 @@ const TableUsuarios = () => {
           setModalEliminar(!modalEliminar);
         }
 
-        const handleChange=e=>{
-          const{name,value}=e.target;//segun el nombre y el valor de los target o etiqueta
-          setClienteSeleccionado((prevState)=>({
+        const handleChange = e=>{
+          const {name,value} = e.target; //segun el nombre y el valor de los target o etiqueta          
+          setClienteSeleccionado((prevState) => ({
             ...prevState,
             [name]:value
           }));
@@ -91,6 +99,7 @@ const TableUsuarios = () => {
             [event.target.name]:event.target.value
           })
         }
+
 
         const buscarCliente= async () =>{
           switch(datosBusqueda.filtro){
@@ -143,8 +152,6 @@ const TableUsuarios = () => {
     
               default:
                 console.log("default");
-    
-    
           }
         }
 
@@ -169,7 +176,7 @@ const TableUsuarios = () => {
                     </ReactBootStrap.Col>
 
                     <ReactBootStrap.Col className="my-1 d-md-flex justify-content-md-end">
-                        <ReactBootStrap.Button className="btn-success" href="/newcliente">Nuevo Cliente</ReactBootStrap.Button>
+                        <ReactBootStrap.Button className="btn-success" href="/newusuario">Nuevo Usuario</ReactBootStrap.Button>
                     </ReactBootStrap.Col>
                 </ReactBootStrap.Row>
             </ReactBootStrap.Form>
@@ -183,6 +190,9 @@ const TableUsuarios = () => {
               <th scope="col">Apellido</th>
               <th scope="col">Celular</th>
               <th scope="col">Email</th>
+              <th scope="col">Pais</th>
+              <th scope="col">Ciudad</th>
+              <th scope="col">Residencia</th>
               
               <th scope="col">Acciones</th>
               
@@ -191,13 +201,16 @@ const TableUsuarios = () => {
           </thead>
           <tbody>
             {
-              data.map((item) =>
+              data.map((item) =>              
                 <tr key={item.id}>
                   <td>{item.numerodocumento}</td>
                   <td>{item.nombre}</td>
                   <td>{item.apellido}</td>
                   <td>{item.celular}</td>
                   <td>{item.email}</td>
+                  <td>{item.direccion !== null ? item.direccion.pais : 'Sin definir'}</td>
+                  <td>{item.direccion !== null ? item.direccion.ciudad : 'Sin definir'}</td>
+                  <td>{item.direccion !== null ? item.direccion.dirResidencia : 'Sin definir'}</td>
                   
                   <td><button className="btn btn-primary" onClick={()=>seleccionarCliente(item,"Editar")} >Editar</button>
                     {"  "}<button className="btn btn-danger" onClick={()=>seleccionarCliente(item)}>Eliminar</button>
@@ -260,6 +273,7 @@ const TableUsuarios = () => {
                   value={clienteSeleccionado.email}
                   onChange={handleChange}
                   />
+                  <br/>                  
                 </div>
               </ModalBody>
               <ModalFooter>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Nav, Navbar, NavDropdown, Form, FormControl, Button,img,a } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
@@ -9,9 +9,9 @@ const NavBar = () => {
         <Navbar bg="light" expand="lg">
         <Container fluid>
 
-        <nav class="navbar navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="/">
+        <nav className="navbar navbar-light bg-light">
+        <div className="container">
+            <a className="navbar-brand" href="/">
                 <img src="https://cdn-icons-png.flaticon.com/512/3135/3135731.png" alt="" width="30" height="24"/>
                 UNAB-CV
             </a>
@@ -26,21 +26,21 @@ const NavBar = () => {
                 style={{ maxHeight: "100px" }}
                 navbarScroll
             >
-                <Link to = "/" className="nav-link">Inicio</Link>
-                <Link to = "/newusuario" className="nav-link">Cargar datos</Link>
+                <Link to = "/" className="nav-link">Inicio</Link>                
                 <Link to = "/users" className="nav-link">Listar datos</Link>
+
+                <Link to = "/about" className="nav-link">Acerca de Nosotros</Link>
+                <Link to = "/newacademia" className="nav-link">Academia</Link>
+                <Link to = "/newusuario" className="nav-link">Registro</Link>
+                <Link to = "/login" className="nav-link">Iniciar Sesion</Link>
                 
-                <NavDropdown title="+ Datos" id="navbarScrollingDropdown">
-                <NavDropdown.Item ><Link to = "/about" className="nav-link">Acerca de Nosotros</Link></NavDropdown.Item>
-                <NavDropdown.Item ><Link to = "/newacademia" className="nav-link">Academia</Link></NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item ><Link to = "/Login" className="nav-link">Iniciar Sesion</Link></NavDropdown.Item>
-                </NavDropdown>
             </Nav>
 
             </Navbar.Collapse>
         </Container>
         </Navbar>
+
+        
 
 
 

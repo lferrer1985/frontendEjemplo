@@ -5,11 +5,11 @@ import { useHistory } from 'react-router'
 import {Container,  Form} from "react-bootstrap";
 import NavBar from "../components/NavBar";
 
-const NewCliente = () => {
+const Login = () => {
     
     const history = useHistory();
     
-    const [data , setData] = useState({numerodocumento:"",nombre:"",apellido:"",email:"",clave:""})
+    const [data , setData] = useState({email:"",clave:""})
 
     
 
@@ -34,7 +34,7 @@ const NewCliente = () => {
                 `El Registro ${response.data.id} ha sido guardado con exito!`,
                 "success"
             )
-            history.push("newcliente")
+            
         }else{
             console.log(response.status,response)
             Swal.fire(
@@ -48,42 +48,10 @@ const NewCliente = () => {
     return (
         <Container>
             <NavBar/>
-            <h3 className="text-center">Registro de nuevo usuario</h3>
+            <h3 className="text-center">Login</h3>
             <Container className="col-md-5 mx-auto">
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3">
-                    <Form.Control
-                    type="number"
-                    name="numerodocumento"
-                    placeholder="Numero de documento"
-                    required
-                    value={data.numerodocumento}
-                    onChange={handleChange}
-                    >
-                    </Form.Control >
-                </Form.Group >
-                <Form.Group className="mb-3">
-                    <Form.Control
-                    type="text"
-                    name="nombre"
-                    placeholder="Nombre"
-                    required
-                    value={data.nombre}
-                    onChange={handleChange}
-                    >
-                    </Form.Control >
-                </Form.Group >
-                <Form.Group className="mb-3">
-                    <Form.Control
-                    type="text"
-                    name="apellido"
-                    placeholder="Apellido"
-                    required
-                    value={data.apellido}
-                    onChange={handleChange}
-                    >
-                    </Form.Control>
-                </Form.Group>
+            <Form onSubmit={handleSubmit}>                              
+                
                 <Form.Group className="mb-3">
                     <Form.Control
                     type="email"
@@ -95,6 +63,7 @@ const NewCliente = () => {
                     >
                     </Form.Control>
                 </Form.Group>
+
                 <Form.Group className="mb-3">
                     <Form.Control
                     type="text"
@@ -106,7 +75,8 @@ const NewCliente = () => {
                     >
                     </Form.Control>
                 </Form.Group>
-                <button className="btn btn-success">Guardar</button>
+
+                <button className="btn btn-success">Ingresar</button>
             </Form>
             
         </Container>
@@ -114,4 +84,4 @@ const NewCliente = () => {
     )
 
 }
-export default NewCliente
+export default Login
